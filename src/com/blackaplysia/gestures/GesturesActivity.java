@@ -52,14 +52,14 @@ public class GesturesActivity extends Activity
 	_gestureDetector.setScrollListener(new GestureDetector.ScrollListener() {
 		@Override
 		public boolean onScroll(float displacement, float delta, float velocity) {
-		    log("ScrollListener" + Float.valueOf(displacement).toString() + ", " + Float.valueOf(delta).toString() + ", " + Float.valueOf(velocity).toString());
+		    log("ScrollListener: " + Float.valueOf(displacement).toString() + ", " + Float.valueOf(delta).toString() + ", " + Float.valueOf(velocity).toString());
 		    return false;
 		}
 	    });
 	_gestureDetector.setTwoFingerScrollListener(new GestureDetector.TwoFingerScrollListener() {
 		@Override
 		public boolean onTwoFingerScroll(float displacement, float delta, float velocity) {
-		    log("TwoFingerScrollListener" + Float.valueOf(displacement).toString() + ", " + Float.valueOf(delta).toString() + ", " + Float.valueOf(velocity).toString());
+		    log("TwoFingerScrollListener: " + Float.valueOf(displacement).toString() + ", " + Float.valueOf(delta).toString() + ", " + Float.valueOf(velocity).toString());
 		    return false;
 		}
 	    });
