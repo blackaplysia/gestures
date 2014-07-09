@@ -22,10 +22,7 @@ public class GesturesActivity extends Activity
 	return "GesturesActivity";
     }
 
-    String _logSequence = new String("");
-
     void log(String message) {
-	_logSequence = _logSequence + "[" + message + "]";
 	((TextView)findViewById(R.id.log)).setText(message);
 	Log.i(getTag(), message);
     }
