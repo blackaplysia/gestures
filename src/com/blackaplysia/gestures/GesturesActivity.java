@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.util.Log;
 
+import java.lang.StringBuffer;
 import java.lang.Integer;
 import java.lang.Float;
 import java.util.List;
@@ -22,9 +23,12 @@ public class GesturesActivity extends Activity
 	return "GesturesActivity";
     }
 
+    StringBuffer _logSequence = new StringBuffer();
+
     void log(String message) {
-	((TextView)findViewById(R.id.log)).setText(message);
 	Log.i(getTag(), message);
+	_logSequence = _logSequence.append("> ").append(message).append("\n");
+	((TextView)findViewById(R.id.log)).setText(_logSequence.toString());
     }
 
     GestureDetector _gestureDetector;
@@ -39,27 +43,27 @@ public class GesturesActivity extends Activity
 	_gestureDetector.setBaseListener(new GestureDetector.BaseListener() {
 		@Override
 		public boolean onGesture(Gesture gesture) {
-		    log("BaseLisetener: " + gesture);
+		    log("BaseListener: " + gesture);
 		    return false;
 		}
 	    });
 	_gestureDetector.setFingerListener(new GestureDetector.FingerListener() {
 		@Override
 		public void onFingerCountChanged(int previousCount, int currentCount) {
-		    log("FingerListener: " + Integer.valueOf(currentCount).toString() + " (" + Integer.valueOf(previousCount).toString() + ")");
+		    log("FingerListener: " + Integer.valueOf(previousCount).toString() + " -> " + Integer.valueOf(currentCount).toString());
 		}
 	    });
 	_gestureDetector.setScrollListener(new GestureDetector.ScrollListener() {
 		@Override
 		public boolean onScroll(float displacement, float delta, float velocity) {
-		    log("ScrollListener: " + Float.valueOf(displacement).toString() + ", " + Float.valueOf(delta).toString() + ", " + Float.valueOf(velocity).toString());
+		    log("ScrollListener: disp=" + Float.valueOf(displacement).toString() + ", delta=" + Float.valueOf(delta).toString() + ", v=" + Float.valueOf(velocity).toString());
 		    return false;
 		}
 	    });
 	_gestureDetector.setTwoFingerScrollListener(new GestureDetector.TwoFingerScrollListener() {
 		@Override
 		public boolean onTwoFingerScroll(float displacement, float delta, float velocity) {
-		    log("TwoFingerScrollListener: " + Float.valueOf(displacement).toString() + ", " + Float.valueOf(delta).toString() + ", " + Float.valueOf(velocity).toString());
+		    log("TwoFingerScrollListener: disp=" + Float.valueOf(displacement).toString() + ", delta=" + Float.valueOf(delta).toString() + ", v=" + Float.valueOf(velocity).toString());
 		    return false;
 		}
 	    });
@@ -70,13 +74,13 @@ public class GesturesActivity extends Activity
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-	log("KeyDown: " + KeyEvent.keyCodeToString(keyCode) + "(" + Integer.valueOf(keyCode).toString() + "), " + event);
+	log("KeyDown: " + KeyEvent.keyCodeToString(keyCode) + " (" + Integer.valueOf(keyCode).toString() + "), " + event);
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-	log("KeyUp: " + KeyEvent.keyCodeToString(keyCode) + "(" + Integer.valueOf(keyCode).toString() + "), " + event);
+	log("KeyUp: " + KeyEvent.keyCodeToString(keyCode) + " (" + Integer.valueOf(keyCode).toString() + "), " + event);
 	return super.onKeyDown(keyCode, event);
     }
 
