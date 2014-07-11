@@ -50,37 +50,50 @@ public class GesturesActivity extends Activity
 	_gestureDetector.setFingerListener(new GestureDetector.FingerListener() {
 		@Override
 		public void onFingerCountChanged(int previousCount, int currentCount) {
-		    log("FingerListener: " + Integer.valueOf(previousCount).toString() + " -> " + Integer.valueOf(currentCount).toString());
+		    log("FingerListener: " +
+			Integer.valueOf(previousCount).toString() +
+			" -> " + Integer.valueOf(currentCount).toString());
 		}
 	    });
 	_gestureDetector.setScrollListener(new GestureDetector.ScrollListener() {
 		@Override
 		public boolean onScroll(float displacement, float delta, float velocity) {
-		    log("ScrollListener: disp=" + Float.valueOf(displacement).toString() + ", delta=" + Float.valueOf(delta).toString() + ", v=" + Float.valueOf(velocity).toString());
+		    log("ScrollListener: " +
+			"disp=" + Float.valueOf(displacement).toString() +
+			", delta=" + Float.valueOf(delta).toString() +
+			", v=" + Float.valueOf(velocity).toString());
 		    return false;
 		}
 	    });
 	_gestureDetector.setTwoFingerScrollListener(new GestureDetector.TwoFingerScrollListener() {
 		@Override
 		public boolean onTwoFingerScroll(float displacement, float delta, float velocity) {
-		    log("TwoFingerScrollListener: disp=" + Float.valueOf(displacement).toString() + ", delta=" + Float.valueOf(delta).toString() + ", v=" + Float.valueOf(velocity).toString());
+		    log("TwoFingerScrollListener: " +
+			"disp=" + Float.valueOf(displacement).toString() +
+			", delta=" + Float.valueOf(delta).toString() +
+			", v=" + Float.valueOf(velocity).toString());
 		    return false;
 		}
 	    });
 
 	setContentView(R.layout.main);
-	log("onCreate()");
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-	log("KeyDown: " + KeyEvent.keyCodeToString(keyCode) + " (" + Integer.valueOf(keyCode).toString() + "), " + event);
+	log("KeyDown: "
+	    + KeyEvent.keyCodeToString(keyCode) +
+	    " (" + Integer.valueOf(keyCode).toString() + "), "
+	    + event);
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-	log("KeyUp: " + KeyEvent.keyCodeToString(keyCode) + " (" + Integer.valueOf(keyCode).toString() + "), " + event);
+	log("KeyUp: " +
+	    KeyEvent.keyCodeToString(keyCode) +
+	    " (" + Integer.valueOf(keyCode).toString() + "), "
+	    + event);
 	return super.onKeyDown(keyCode, event);
     }
 
