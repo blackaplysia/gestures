@@ -77,6 +77,8 @@ public class GesturesActivity extends Activity
 	    });
 
 	setContentView(R.layout.main);
+
+	Log.i(getTag(), "onCreate()");
     }
 
     @Override
@@ -92,13 +94,45 @@ public class GesturesActivity extends Activity
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 	log("KeyUp: " +
 	    KeyEvent.keyCodeToString(keyCode) +
-	    " (" + Integer.valueOf(keyCode).toString() + "), "
-	    + event);
+	    " (" + Integer.valueOf(keyCode).toString() + "), " +
+	    event);
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+	log("KeyLongPress: " +
+	    KeyEvent.keyCodeToString(keyCode) +
+	    " (" + Integer.valueOf(keyCode).toString() + "), " +
+	    event);
+	return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+	log("KeyMultiple: " +
+	    KeyEvent.keyCodeToString(keyCode) +
+	    " (" + Integer.valueOf(keyCode).toString() + "), " +
+	    " count=" + repeatCount + ", " +
+	    event);
+	return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+	log("TouchEvent: " + event);
+	return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTrackballEvent(MotionEvent event) {
+	log("TrackballEvent: " + event);
+	return super.onTrackballEvent(event);
+    }
+
+    @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
+	log("GenericMotionEvent: " + event);
 	if (_gestureDetector != null) {
 	    return _gestureDetector.onMotionEvent(event);
 	}
