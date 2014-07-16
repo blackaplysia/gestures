@@ -20,7 +20,7 @@ public class GesturesActivity extends Activity
 {
 
     private static final String getTag() {
-	return "GesturesActivity";
+	return "gestures";
     }
 
     StringBuffer _logSequence = new StringBuffer();
@@ -83,56 +83,58 @@ public class GesturesActivity extends Activity
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-	log("KeyDown: "
-	    + KeyEvent.keyCodeToString(keyCode) +
-	    " (" + Integer.valueOf(keyCode).toString() + "), "
-	    + event);
+	log("KeyDown: " +
+	    KeyEvent.keyCodeToString(keyCode) + ", " +
+	    MotionEvent.actionToString(event.getAction()));
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 	log("KeyUp: " +
-	    KeyEvent.keyCodeToString(keyCode) +
-	    " (" + Integer.valueOf(keyCode).toString() + "), " +
-	    event);
+	    KeyEvent.keyCodeToString(keyCode) + ", " +
+	    MotionEvent.actionToString(event.getAction()));
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
 	log("KeyLongPress: " +
-	    KeyEvent.keyCodeToString(keyCode) +
-	    " (" + Integer.valueOf(keyCode).toString() + "), " +
-	    event);
+	    KeyEvent.keyCodeToString(keyCode) + ", " +
+	    MotionEvent.actionToString(event.getAction()));
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
 	log("KeyMultiple: " +
-	    KeyEvent.keyCodeToString(keyCode) +
-	    " (" + Integer.valueOf(keyCode).toString() + "), " +
+	    KeyEvent.keyCodeToString(keyCode) + ", " +
 	    " count=" + repeatCount + ", " +
-	    event);
+	    MotionEvent.actionToString(event.getAction()));
 	return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-	log("TouchEvent: " + event);
+	log("TouchEvent: " +
+	    MotionEvent.actionToString(event.getActionMasked()) +
+	    ", pointer-count=" + event.getPointerCount());
 	return super.onTouchEvent(event);
     }
 
     @Override
     public boolean onTrackballEvent(MotionEvent event) {
-	log("TrackballEvent: " + event);
+	log("TrackballEvent: " +
+	    MotionEvent.actionToString(event.getActionMasked()) +
+	    ", pointer-count=" + event.getPointerCount());
 	return super.onTrackballEvent(event);
     }
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
-	log("GenericMotionEvent: " + event);
+	log("GenericMotionEvent: " +
+	    MotionEvent.actionToString(event.getActionMasked()) +
+	    ", pointer-count=" + event.getPointerCount());
 	if (_gestureDetector != null) {
 	    return _gestureDetector.onMotionEvent(event);
 	}
